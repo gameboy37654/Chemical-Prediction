@@ -1,10 +1,10 @@
 public abstract class Element{
-  private String type, name, baseState, charge, state;
+  private String type, name, baseState, charge, state, symbol;
   private int atomicNumber, electrons, neutrons, valanceElectrons;
   private double atomicMass, temperature;
   private boolean isIonic;
   
-  public Element(String type, String name, String state, int atomicNumber, double mass, double temp, int electrons, charge){
+  public Element(String name, String symbol, String type , String state, int atomicNumber, double mass, double temp, int electrons, charge){
     this.type = type;
     this.name = name;
     this.baseState = state;
@@ -13,15 +13,23 @@ public abstract class Element{
     temperature = temp;
     neutrons =  atomicMass - atomicNumber;
     this.isIonic = (atomicMass - electrons) != 0;
+    this.symbol = symbol;
+    
+    if(isIonic){
+      if(!(name.contains("Ionic"))){
+        "Ionic " + this.name;
+      }
+    }
+    
     this.charge = charge;
     this.electrons = electrons;
     this.setState();
     
   }
   
-  public Element((String type, String name, String state, int atomicNumber, double mass, double temp){
+  public Element((String name, String symbol, String type, String state, int atomicNumber, double mass, double temp){
     
-    this(type,name,state,atomicNumber, mass, temp, atomicNumber, neutral);
+    this(name,type,state,atomicNumber, mass, temp, atomicNumber, "Neutral");
     
   }
   
@@ -90,5 +98,20 @@ public abstract class Element{
   
   public void setTemp(double temp){
     temperature = temp;
+  }
+  
+  public String toString(){
+    String layout = "";
+    layout = "Name: " + name + "\n" +
+              "Atomic Number: " + atomicNumber + "\n" +
+              "Atomic Mass: " + atomicMass + "\n" +
+              "Base State: " + baseState + "\n" +
+              "Current State: " + state + "\n" +
+              "Current Temperature: " + temperature + " Degrees Celsius \n" +
+              "Electrons: " + electrons + "\n" +
+              "Neutrons: " + neutrons + "\n" +
+              "Protons: " + getProtons + "\n" +
+              "Ionic: " + isIonic + "\n";
+    return layout;
   }
 }

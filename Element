@@ -1,0 +1,94 @@
+public abstract class Element{
+  private String type, name, baseState, charge, state;
+  private int atomicNumber, electrons, neutrons, valanceElectrons;
+  private double atomicMass, temperature;
+  private boolean isIonic;
+  
+  public Element(String type, String name, String state, int atomicNumber, double mass, double temp, int electrons, charge){
+    this.type = type;
+    this.name = name;
+    this.baseState = state;
+    this.atomicNumber = atomicNumber;
+    atomicmass = mass;
+    temperature = temp;
+    neutrons =  atomicMass - atomicNumber;
+    this.isIonic = (atomicMass - electrons) != 0;
+    this.charge = charge;
+    this.electrons = electrons;
+    this.setState();
+    
+  }
+  
+  public Element((String type, String name, String state, int atomicNumber, double mass, double temp){
+    
+    this(type,name,state,atomicNumber, mass, temp, atomicNumber, neutral);
+    
+  }
+  
+  private int VECount(){
+    if(electrons == 1 || electrons == 2)
+      return electrons;
+    
+    return (electrons - 2) % 8;
+  }
+  
+  public String getType(){
+    return type;
+  }
+  
+  public String getName(){
+    return name;
+  }
+  
+  public void setState();
+  
+  public String getState();
+  
+  public String getBaseState(){
+    return baseState;
+  }
+  
+  public void setState(String state){
+    this.state = state;
+  } 
+  
+  public int getAtomicNumber(){
+    return atomicNumber;
+  }
+  
+  public int getProtons(){
+    return atomicNumber;
+  }
+  
+  public int getElectrons(){
+    return electrons;
+  }
+  
+  public int getNeutrons(){
+    return neutrons;
+  }
+  
+  public int getValanceElectrons(){
+    return valanceElectrons;
+  }
+  
+  public double getAtomicMass(){
+    return atomicMass;
+  }
+  
+  public int getCharge(){
+    return getProtons - electrons;
+  }
+  
+  public boolean isIonic(){
+    return isIonic;
+  }
+  
+  public double getTemp(){
+    return temperature;
+  }
+  
+  public void setTemp(double temp){
+    temperature = temp;
+  }
+}

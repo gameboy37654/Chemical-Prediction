@@ -27,9 +27,9 @@ public abstract class Element{
     
   }
   
-  public Element((String name, String symbol, String type, String state, int atomicNumber, double mass, double temp){
+  public Element((String name, String symbol, String type, String state, int atomicNumber, double mass){
     
-    this(name,type,state,atomicNumber, mass, temp, atomicNumber, "Neutral");
+    this(name,type,state,atomicNumber, mass, 23, atomicNumber, "Neutral");
     
   }
   
@@ -108,6 +108,7 @@ public abstract class Element{
               "Base State: " + baseState + "\n" +
               "Current State: " + state + "\n" +
               "Current Temperature: " + temperature + " Degrees Celsius \n" +
+              "Valence Electrons: " + valanceElectrons + "\n" +
               "Electrons: " + electrons + "\n" +
               "Neutrons: " + neutrons + "\n" +
               "Protons: " + getProtons + "\n" +

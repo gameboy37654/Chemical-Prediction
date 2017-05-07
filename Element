@@ -4,7 +4,9 @@ public abstract class Element{
   private double atomicMass, temperature;
   private boolean isIonic;
   
-  public Element(String name, String symbol, String type , String state, int atomicNumber, double mass, double temp, int electrons, String charge){
+  private double meltingPoint, boilingPoint;
+  
+  public Element(String name, String symbol, String type , String state, int atomicNumber, double mass, double temp, int electrons, String charge, double melt, double boil){
     this.type = type;
     this.name = name;
     this.baseState = state;
@@ -24,12 +26,14 @@ public abstract class Element{
     this.charge = charge;
     this.electrons = electrons;
     this.setState();
-    
+    meltingPoint = melt;
+    boilingPoint = boil;
   }
   
-  public Element(String name, String symbol, String type, String state, int atomicNumber, double mass){
+  public Element(String name, String symbol, String type, String state, int atomicNumber, double mass, double melt, double boil){
     
-    this(name,symbol, type,state,atomicNumber, mass, 23, atomicNumber, "Neutral");
+    this(name,symbol, type,state,atomicNumber, mass, 23, atomicNumber, "Neutral", melt, boil);
+    
     
   }
   
@@ -48,9 +52,19 @@ public abstract class Element{
     return name;
   }
   
-  public abstract void setState();
+  public void setState(){
+    if(temperature >= boilingPoint){
+      state = "Gas";
+    }
+    else if(temperature >= meltingPoint)
+      state = "Liquid";
+    else
+      state = "solid";
+  }
   
-  public abstract String getState();
+  public String getState(){
+    return state;
+  }
   
   public String getBaseState(){
     return baseState;
